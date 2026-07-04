@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3F6B5B" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#3F6B5B" stop-opacity="0.06"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="800" fill="#1E1D1B"/>
+  <rect width="1280" height="800" fill="url(#g)"/>
+  <rect x="40" y="40" width="1200" height="720" rx="14" fill="none" stroke="#3F6B5B" stroke-width="2" stroke-dasharray="10 8" opacity="0.5"/>
+  <text x="640" y="380" text-anchor="middle" font-family="monospace" font-size="34" fill="#3F6B5B" font-weight="700">Warehouse Stock Take</text>
+  <text x="640" y="430" text-anchor="middle" font-family="monospace" font-size="22" fill="#A8A29E">App Screen 2</text>
+  <text x="640" y="470" text-anchor="middle" font-family="monospace" font-size="14" fill="#78716C">Replace with a real screenshot - public/projects/warehouse-stock-take/</text>
+</svg>

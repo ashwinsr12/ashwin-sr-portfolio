@@ -1,0 +1,258 @@
+[
+  {
+    "slug": "warehouse-stock-take",
+    "title": "Warehouse Stock Take Scanning App",
+    "client": "HealtheCare",
+    "domain": "Operations · Supply Chain",
+    "period": "2024 – Present",
+    "oneLiner": "A barcode-scanning Power Apps solution that replaced paper-based stock counts with real-time, validated inventory reconciliation across warehouse sites.",
+    "heroMetric": {
+      "value": "0",
+      "label": "manual re-entry between systems"
+    },
+    "tech": [
+      "Power Apps (Canvas)",
+      "Dataverse",
+      "SharePoint",
+      "Power Automate",
+      "Dynamics 365 SCM",
+      "DataWedge (Android)"
+    ],
+    "images": [
+      {
+        "src": "/projects/warehouse-stock-take/1.svg",
+        "alt": "Warehouse Stock Take Scanning App — App screen 1"
+      },
+      {
+        "src": "/projects/warehouse-stock-take/2.svg",
+        "alt": "Warehouse Stock Take Scanning App — App screen 2"
+      },
+      {
+        "src": "/projects/warehouse-stock-take/3.svg",
+        "alt": "Warehouse Stock Take Scanning App — App screen 3"
+      },
+      {
+        "src": "/projects/warehouse-stock-take/4.svg",
+        "alt": "Warehouse Stock Take Scanning App — Dashboard view"
+      }
+    ],
+    "businessProblem": "HealtheCare's warehouse teams ran physical stock takes on paper sheets, then re-keyed counts into Dynamics 365 SCM by hand days later. That gap meant stale inventory data, transcription errors, and no way to catch a miscount until the next audit cycle.",
+    "businessDomain": "Operations / Supply Chain — inventory management for a healthcare logistics client, feeding directly into Dynamics 365 Supply Chain Management (SCM).",
+    "users": "Warehouse floor staff performing counts on Android handheld scanners, plus warehouse managers reviewing and approving the results — deployed across multiple HealtheCare sites.",
+    "userRoles": [
+      "Warehouse Staff (count entry)",
+      "Warehouse Manager (review, variance, approval)",
+      "SCM Admin (Counting Journal oversight)"
+    ],
+    "ownership": "I designed and built the Canvas App end-to-end: the scanning workflow, Dataverse data model, SharePoint document handling, the Power Automate flows connecting to D365 SCM, and the companion Model-Driven back-office app for managers. I also owned the UAT → Production environment migration and role-based access setup in the Power Platform Admin Center.",
+    "solutionDesign": "Canvas Power Apps for the handheld scanning experience — it's the only option that runs natively on Android with camera/scanner hardware integration (DataWedge) while staying low-code to maintain. Dataverse holds the working stock-count data because it needed relational integrity (product ↔ location ↔ count ↔ journal) and native security roles; SharePoint handles bulk Excel import/export since warehouse teams were already comfortable with spreadsheet workflows for large product lists. Dynamics 365 SCM remains the system of record — the app is a validated capture layer in front of it, not a replacement.",
+    "businessLogic": "Real-time product/location validation against Dataverse as each item is scanned, so mismatched or unknown SKUs are caught immediately instead of at reconciliation. Bulk stock-count import from Excel for high-volume locations. Variance calculation between scanned counts and system-on-hand quantities, routed to a manager approval step before anything posts. Automated Counting Journal creation in D365 SCM once approved — no manual journal entry.",
+    "integrations": [
+      "Dynamics 365 SCM (Counting Journal + product/location master data)",
+      "SharePoint (bulk import/export, document storage)",
+      "Dataverse (working data model)",
+      "Android DataWedge barcode scanning"
+    ],
+    "automation": "Power Automate cloud flows handle the validation-to-journal pipeline: on approval, a flow packages the reconciled counts and posts a Counting Journal to D365 SCM via its data connector, then notifies the warehouse manager and SCM admin of the result — removing the manual journal-entry step entirely.",
+    "security": "Role-based security in Dataverse separates count-entry (Warehouse Staff) from approval and variance visibility (Warehouse Manager). Environment separation (UAT vs Production) with access controlled through the Power Platform Admin Center, so field testing never touches live SCM data.",
+    "challenges": [
+      "Reliable barcode capture on Android handhelds — tuned the DataWedge integration so scans map cleanly to Dataverse records without duplicate or dropped reads.",
+      "Reconciling high-volume bulk counts (Excel import) with real-time scanned counts in the same variance calculation without double-counting.",
+      "Keeping the app usable offline-tolerant on warehouse floors with inconsistent connectivity, and syncing cleanly once back online."
+    ],
+    "scale": "Deployed across multiple HealtheCare warehouse sites, spanning the full stock-take lifecycle from count entry through manager approval to automated posting in D365 SCM, run through both UAT and Production environments.",
+    "businessOutcome": "Eliminated manual re-entry between the count sheet and D365 SCM entirely. Replaced paper-based counts with a validated digital workflow, giving managers same-day visibility into variances instead of waiting on the next audit cycle.",
+    "decisionMaking": "Canvas over Model-Driven for the scanning app: the floor workflow needed a custom, scanner-first UI, which Canvas gives you directly — a Model-Driven app was used instead for the manager's back-office review screen, where a data-grid-first experience with inline editing was the better fit. Dataverse over a plain SharePoint list for stock-count data: the count ↔ product ↔ location ↔ journal relationships needed real relational structure and row-level security, not a flat list."
+  },
+  {
+    "slug": "infra-asset-numbering",
+    "title": "Infra Asset Numbering",
+    "client": "Internal — Infrastructure Team, Sonata Software",
+    "domain": "IT / Infrastructure Asset Management",
+    "period": "2024 – Present",
+    "oneLiner": "An enterprise asset-registration system with automated, collision-proof Asset ID generation and a manager approval workflow — replacing an ad-hoc, manually-numbered asset tracker.",
+    "heroMetric": {
+      "value": "100%",
+      "label": "IDs generated by rule, not by hand"
+    },
+    "tech": [
+      "Power Apps",
+      "Power Automate",
+      "SQL Server",
+      "SharePoint",
+      "Dynamics 365"
+    ],
+    "images": [
+      {
+        "src": "/projects/infra-asset-numbering/1.svg",
+        "alt": "Infra Asset Numbering — App screen 1"
+      },
+      {
+        "src": "/projects/infra-asset-numbering/2.svg",
+        "alt": "Infra Asset Numbering — App screen 2"
+      },
+      {
+        "src": "/projects/infra-asset-numbering/3.svg",
+        "alt": "Infra Asset Numbering — App screen 3"
+      },
+      {
+        "src": "/projects/infra-asset-numbering/4.svg",
+        "alt": "Infra Asset Numbering — Dashboard view"
+      }
+    ],
+    "businessProblem": "The Infrastructure team tracked assets (hardware, network equipment, facilities equipment) with manually assigned ID numbers across spreadsheets and SharePoint lists. IDs collided, formats drifted between locations, and there was no approval gate before an asset was considered 'registered' — so audit trails were unreliable.",
+    "businessDomain": "IT / Infrastructure — internal asset lifecycle management across multiple company locations, feeding summary data into Dynamics 365.",
+    "userRoles": [
+      "Requester (registers a new asset)",
+      "Infrastructure Manager (approver)",
+      "Admin (ID scheme, audit reporting)"
+    ],
+    "users": "Internal infrastructure staff across multiple locations who register, approve, and audit company assets.",
+    "ownership": "I owned the full build: the Power Apps registration form, the SQL Server schema and stored procedures for Asset ID generation, the Power Automate approval and notification flows, and the D365 data sync.",
+    "solutionDesign": "SQL Server as the source of truth for ID generation, not Dataverse — Asset ID rules needed atomic, collision-proof sequence generation across locations and asset types, which a stored procedure guarantees far more reliably than app-side logic or an autonumber column would across concurrent submissions. Power Apps as the front door for both requesters and managers since the form logic (conditional fields by asset type, attachment capture) fit Canvas well. SharePoint holds supporting documents (invoices, warranty files) per asset. Power Automate is the connective tissue between the form, SQL, and email notifications.",
+    "businessLogic": "On submission, a stored procedure generates a structured Asset ID (encoding location and asset-type segments) so IDs are never manually typed. The request routes to the appropriate manager for approval; rejected requests return to the requester with a reason. Every state change — submitted, approved, rejected, registered — is written to an audit table for traceability. Approved assets sync summary fields to Dynamics 365 for downstream reporting.",
+    "integrations": [
+      "SQL Server (ID generation + audit log)",
+      "SharePoint (supporting documents)",
+      "Dynamics 365 (asset summary sync)",
+      "Outlook (approval notifications)"
+    ],
+    "automation": "Power Automate flows trigger the SQL stored procedure on submission, route the approval task to the correct manager based on location/asset type, send automated email notifications at each state change (submitted → approved/rejected → registered), and push the final record to D365.",
+    "security": "Role-based access separates who can request an asset from who can approve one; SQL Server access is restricted to the service account behind the flows, not exposed directly to end users. Full state-change audit log supports internal traceability requirements.",
+    "challenges": [
+      "Guaranteeing Asset IDs never collide under concurrent submissions — solved with a SQL stored procedure using atomic sequence generation rather than app-side ID logic.",
+      "Standardizing an ID format that stayed human-readable (location + asset-type segments) while remaining machine-generated end to end.",
+      "Keeping the approval routing correct as it needed to vary by location and asset type rather than a single fixed approver chain."
+    ],
+    "scale": "Rolled out across multiple infrastructure locations, covering the full asset lifecycle from registration through approval, ID issuance, and audit tracking, with data flowing through to Dynamics 365.",
+    "businessOutcome": "Replaced manual, error-prone ID assignment with a standardized, automatically generated scheme with a full audit trail — giving the infrastructure team traceable, collision-free asset records and a proper approval gate that didn't exist before.",
+    "decisionMaking": "SQL Server over Dataverse for ID generation specifically: Dataverse autonumber columns don't support the composite, segment-based ID logic (location + type + sequence) this required, and a stored procedure gave atomic control that's harder to guarantee safely in Power Automate alone. SharePoint over Dataverse for documents: file-heavy attachments are cheaper and simpler to manage in SharePoint than as Dataverse file columns at this scale."
+  },
+  {
+    "slug": "obligation-management",
+    "title": "Obligation Management System",
+    "client": "Sonata Software Solutions Limited",
+    "domain": "Legal / Contract Governance",
+    "period": "2024 – Present",
+    "oneLiner": "An AI-powered platform that reads SOW and MSA contracts, extracts legal obligations automatically, and tracks them to completion with role-based dashboards and reminders.",
+    "heroMetric": {
+      "value": "~60%",
+      "label": "reduction in manual contract review"
+    },
+    "tech": [
+      "Power Apps",
+      "Power Automate",
+      "SharePoint",
+      "REST APIs",
+      "OpenAI API"
+    ],
+    "images": [
+      {
+        "src": "/projects/obligation-management/1.svg",
+        "alt": "Obligation Management System — App screen 1"
+      },
+      {
+        "src": "/projects/obligation-management/2.svg",
+        "alt": "Obligation Management System — App screen 2"
+      },
+      {
+        "src": "/projects/obligation-management/3.svg",
+        "alt": "Obligation Management System — App screen 3"
+      },
+      {
+        "src": "/projects/obligation-management/4.svg",
+        "alt": "Obligation Management System — Dashboard view"
+      }
+    ],
+    "businessProblem": "Legal and delivery teams manually re-read Statements of Work (SOW) and Master Service Agreements (MSA) to find and track contractual obligations — deliverable dates, compliance clauses, renewal triggers. It was slow, easy to miss a clause on, and gave no central, trackable view of what was still outstanding across active contracts.",
+    "businessDomain": "Legal / Contract Governance and Compliance, used cross-functionally by legal, delivery, and account teams.",
+    "userRoles": [
+      "Legal Team (obligation review + sign-off)",
+      "Delivery/Account Owner (obligation execution)",
+      "Admin (contract intake, dashboard configuration)"
+    ],
+    "users": "Cross-functional teams responsible for contract compliance — legal reviewers, delivery owners tracking their obligations, and admins managing contract intake.",
+    "ownership": "I built the AI extraction pipeline (prompt design + OpenAI REST integration), the Power Apps intake and role-based dashboard experience, the SharePoint document store, and the Power Automate flows that turn extracted obligations into tracked, reminder-driven records.",
+    "solutionDesign": "SharePoint stores the source SOW/MSA documents since legal already manages contracts there and it handles versioning natively. Power Automate calls the OpenAI REST API on document upload to extract candidate obligations as structured text, which is then parsed and written into a Power Apps-managed data store. Power Apps delivers role-based dashboards — legal sees every obligation across contracts, delivery owners see only theirs — because the audiences and permissions needed differed sharply by role.",
+    "businessLogic": "On contract upload, an automated flow sends the document text to OpenAI with a structured extraction prompt, returning candidate obligations (description, owner, due date, clause reference). Extracted obligations are queued for a human review/confirmation step before they go live — the AI proposes, a person confirms — then tracked with status (open, in progress, complete, overdue). Reminder logic escalates as due dates approach and again if they're missed.",
+    "integrations": [
+      "OpenAI API (obligation extraction)",
+      "SharePoint (contract document store)",
+      "REST APIs (AI + downstream calls)",
+      "Outlook/Teams (reminder notifications)"
+    ],
+    "automation": "Power Automate flows handle the full pipeline: trigger on document upload → call OpenAI to extract obligations → write candidates for review → on confirmation, create tracked obligation records → scheduled flows scan due dates daily and send proactive reminder notifications to the responsible owner, escalating if an obligation goes overdue.",
+    "security": "Role-based dashboard visibility so obligation data is scoped to what each role should see (legal sees all, delivery sees their own). Contract documents inherit SharePoint's permission model, keeping sensitive MSA/SOW content restricted to authorized groups.",
+    "challenges": [
+      "Getting consistent, structured output from an LLM against varied contract formatting — refined the extraction prompt and added a human-confirmation step so AI output never goes live unreviewed.",
+      "Designing dashboards that serve very different audiences (legal vs. delivery) from the same underlying obligation data without duplicating the data model.",
+      "Reminder logic that escalates meaningfully instead of generating alert fatigue — tuned timing and audience per obligation status."
+    ],
+    "scale": "In active use across cross-functional legal, delivery, and account teams, processing SOW/MSA contracts on an ongoing basis with obligations tracked through to completion.",
+    "businessOutcome": "Cut manual contract review by roughly 60% by having AI surface obligations for confirmation instead of requiring a full manual read-through, while proactive reminders improved visibility into what's still outstanding — reducing the risk of a missed compliance or delivery obligation.",
+    "decisionMaking": "Chose a human-in-the-loop review step over fully automated obligation creation deliberately — legal/compliance data has real consequences if the AI extraction is wrong, so the design trades a small amount of automation for accuracy and auditability. Used SharePoint over Dataverse for documents for the same reason as other projects: native versioning and permission inheritance fit contract documents better than Dataverse file columns."
+  },
+  {
+    "slug": "india-tax-automation",
+    "title": "India Tax Automation",
+    "client": "Sonata Software Solutions Limited",
+    "domain": "Finance / Tax Compliance",
+    "period": "2024 – Present",
+    "oneLiner": "An RPA + cloud-flow pipeline that logs into GST/Income Tax portals across five entities, pulls new filings, diffs them against history, and flags exceptions — eliminating a weekly manual monitoring task.",
+    "heroMetric": {
+      "value": "8+ hrs",
+      "label": "manual work removed per week"
+    },
+    "tech": [
+      "Power Automate Desktop (RPA)",
+      "Power Automate Cloud",
+      "SharePoint",
+      "Power Apps"
+    ],
+    "images": [
+      {
+        "src": "/projects/india-tax-automation/1.svg",
+        "alt": "India Tax Automation — App screen 1"
+      },
+      {
+        "src": "/projects/india-tax-automation/2.svg",
+        "alt": "India Tax Automation — App screen 2"
+      },
+      {
+        "src": "/projects/india-tax-automation/3.svg",
+        "alt": "India Tax Automation — App screen 3"
+      },
+      {
+        "src": "/projects/india-tax-automation/4.svg",
+        "alt": "India Tax Automation — Dashboard view"
+      }
+    ],
+    "businessProblem": "The finance/tax team had to manually log into GST and Income Tax government portals for five separate legal entities every week, download filing documents, and compare them against prior records to catch new notices or discrepancies — a slow, repetitive, error-prone task that ran the risk of a missed compliance deadline.",
+    "businessDomain": "Finance — tax litigation monitoring and compliance across multiple legal entities.",
+    "userRoles": [
+      "Tax/Finance Team (monitors exceptions)",
+      "Stakeholders (receive notifications)",
+      "Admin (credential + entity configuration)"
+    ],
+    "users": "Finance and tax compliance staff responsible for monitoring GST/Income Tax filings across 5 company entities, plus stakeholders who receive exception alerts.",
+    "ownership": "I built the full pipeline end-to-end: the Power Automate Desktop bots that handle portal login and document retrieval, the Cloud Flows that compare and route results, the SharePoint archive, and the Power Apps dashboard used to track everything centrally.",
+    "solutionDesign": "Power Automate Desktop (RPA) was necessary rather than a pure cloud/API approach because the government tax portals expose no API — the only integration point is the browser UI itself, which desktop-flow automation can drive securely and repeatably. Power Automate Cloud picks up from there for anything that doesn't need a browser: file comparison, exception logic, and notifications. SharePoint archives every retrieved document with version history for audit purposes. Power Apps gives the team one dashboard instead of five separate portal logins to check manually.",
+    "businessLogic": "Scheduled desktop flows log into each of the 5 entities' GST/Income Tax portal accounts using secured credentials, retrieve current filing documents, and hand them to a cloud flow. The cloud flow compares each new document against the prior week's archived version; any new filing, notice, or discrepancy is flagged as an exception. Exceptions generate stakeholder notifications; everything (matched and flagged) is logged to the central Power Apps tracking dashboard.",
+    "integrations": [
+      "GST portal",
+      "Income Tax portal",
+      "SharePoint (document archive + version history)",
+      "Outlook (exception notifications)"
+    ],
+    "automation": "Power Automate Desktop bots run on a schedule to handle the credentialed browser login and document retrieval for all 5 entities. Power Automate Cloud flows take over for file comparison against historical SharePoint records, exception detection, stakeholder notification, and writing results into the Power Apps dashboard — a task that was fully manual end to end before this.",
+    "security": "Entity portal credentials are stored and used securely within the automation (not shared manually between team members), and access to the tracking dashboard and document archive is role-restricted to the finance/tax team.",
+    "challenges": [
+      "Automating reliable login and navigation across two different government portal UIs (GST and Income Tax) that weren't built for automation and don't offer an API.",
+      "Building an accurate file-comparison/diff step that reliably distinguishes a genuinely new filing or notice from a re-downloaded duplicate.",
+      "Keeping the RPA bots resilient to minor portal UI changes without needing a rebuild every time."
+    ],
+    "scale": "Runs weekly across 5 legal entities' tax portal accounts, covering the full retrieval → comparison → exception → notification cycle on an ongoing basis.",
+    "businessOutcome": "Eliminated 8+ hours of manual portal-checking work per week and gave the finance team centralized, proactive visibility into new filings and exceptions instead of relying on someone remembering to check five portals individually.",
+    "decisionMaking": "Power Automate Desktop over a cloud-only approach: the portals have no API, so RPA driving the actual browser was the only reliable integration path. SharePoint over a database for the document archive: version history and easy manual inspection by the finance team mattered more here than relational querying, which a flat compliance-document archive doesn't need."
+  }
+]

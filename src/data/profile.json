@@ -1,0 +1,51 @@
+{
+  "name": "Ashwin SR",
+  "role": "Microsoft Power Platform Developer",
+  "location": "Bangalore, Karnataka, India",
+  "email": "achuwin.sr@gmail.com",
+  "phone": "+91 86670 04100",
+  "linkedin": "https://www.linkedin.com/in/ashwinnsr/",
+  "resumeFile": "/Ashwin-SR-Resume.pdf",
+  "experienceStartDate": "2023-09-01",
+  "summary": "Power Platform Developer designing, building, and shipping enterprise-grade applications on Power Apps, Power Automate, Power BI, and Power Virtual Agents. I turn manual, paper-and-email business processes into governed, role-based systems on Dataverse, SharePoint, SQL Server, and Azure — work that has cut manual effort by up to 70% for the teams using it. PL-400 certified (Microsoft Power Platform Developer Associate).",
+  "stats": [
+    { "id": "experience", "label": "Power Platform experience" },
+    { "id": "apps-shipped", "value": "4", "suffix": "", "label": "Enterprise apps shipped" },
+    { "id": "effort-reduction", "value": "70", "suffix": "%", "label": "Peak manual-effort reduction" },
+    { "id": "certification", "value": "PL-400", "suffix": "", "label": "Microsoft certified" }
+  ],
+  "experience": [
+    {
+      "company": "Sonata Software Limited",
+      "role": "Power Platform Developer",
+      "period": "June 2024 – Present",
+      "location": "Bangalore, India",
+      "highlights": [
+        "Built an AI-powered Obligation Management app integrating OpenAI via REST API to extract legal obligations from SOW/MSA contracts — cutting manual contract review by ~60%.",
+        "Architected a full Dataverse + Dynamics 365 SCM integration pipeline for Warehouse Stock Take, connecting real-time product validation, stock count submission, and automated Counting Journal creation with zero manual re-entry.",
+        "Engineered end-to-end India Tax Automation using Power Automate Desktop — automating GST/Income Tax portal logins across 5 entity credentials and eliminating 8+ hours of manual work per week.",
+        "Designed the Warehouse Stock Take Canvas App for HealtheCare with DataWedge barcode scanning on Android handhelds, replacing manual paper-based stock counts across multiple sites.",
+        "Developed a role-based Infra Asset Numbering app backed by SQL Server, with stored-procedure-driven Asset ID auto-generation and a manager approval workflow with automated email notifications.",
+        "Built a back-office Model-Driven App for Warehouse Managers with variance reporting and inline editing; owned the full UAT → Production environment lifecycle with role-based access via the Power Platform Admin Center."
+      ]
+    }
+  ],
+  "education": {
+    "degree": "B.E. in Computer Science and Engineering",
+    "school": "Nandha Engineering College, Erode",
+    "period": "2019 – 2023",
+    "detail": "CGPA 8.8 / 10"
+  },
+  "certifications": [
+    { "name": "PL-400: Power Platform Developer Associate", "issuer": "Microsoft", "year": "2027" }
+  ],
+  "skills": [
+    { "group": "Power Apps", "items": ["Canvas Apps", "Model-Driven Apps", "PCF Controls", "Component Libraries"] },
+    { "group": "Power Automate", "items": ["Cloud Flows", "Desktop Flows (RPA)", "Approval Workflows", "HTTP Connectors", "Custom Connectors"] },
+    { "group": "Power Pages", "items": ["Web Portal Development", "Web API Configuration"] },
+    { "group": "Dataverse", "items": ["Tables", "Relationships", "Security Roles"] },
+    { "group": "Integrations", "items": ["SharePoint", "Microsoft Teams", "Dynamics 365", "REST APIs", "OpenAI API"] },
+    { "group": "Languages", "items": ["JavaScript", "TypeScript", "HTML/CSS", "React.js", "Node.js", "SQL", "JSON", "Power Fx"] },
+    { "group": "Dev Tools", "items": ["Azure DevOps", "GitHub", "Power Platform CLI"] }
+  ]
+}

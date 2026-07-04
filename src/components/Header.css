@@ -1,0 +1,32 @@
+.site-header {
+  position: sticky; top: 0; z-index: 30;
+  background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-default);
+}
+.site-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; padding: 14px 0;
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.brand__mark {
+  width: 32px; height: 32px; border-radius: var(--radius-sm);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-signal); color: var(--bg-primary);
+  font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: -0.5px;
+}
+.brand__name { font-family: var(--font-heading); font-weight: 600; font-size: 15px; color: var(--text-primary); }
+
+.site-nav { display: flex; align-items: center; gap: 22px; }
+.site-nav a:not(.btn) {
+  font-family: var(--font-ui); font-size: 12.5px; letter-spacing: 0.3px; color: var(--text-muted);
+  transition: color var(--dur-base) var(--ease-out);
+}
+.site-nav a:not(.btn):hover { color: var(--color-signal); }
+.nav-cta { padding: 7px 14px; font-size: 12px; }
+
+@media (max-width: 620px) {
+  .brand__name { display: none; }
+  .site-nav { gap: 12px; }
+  .site-nav a:not(.btn) { display: none; }
+}

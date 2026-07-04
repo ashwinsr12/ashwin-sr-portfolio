@@ -1,0 +1,8 @@
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default); background: transparent;
+  color: var(--text-secondary); cursor: pointer;
+  transition: border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
+}
+.theme-toggle:hover { color: var(--color-signal); border-color: var(--color-signal); background: var(--signal-bg); }

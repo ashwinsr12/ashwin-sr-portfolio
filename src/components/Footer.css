@@ -1,0 +1,6 @@
+.site-footer {
+  margin-top: auto; border-top: 1px solid var(--border-default);
+  padding: 24px 0; font-family: var(--font-ui); font-size: 11.5px; color: var(--text-muted);
+}
+.site-footer__inner { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.site-footer__sep { opacity: 0.5; }
