@@ -54,10 +54,11 @@
   margin-left: 2px;
 }
 .experience-counter__secondary {
-  font-size: 0.75em;
+  font-family: var(--font-ui); font-size: 11.5px; color: var(--text-muted); 
+  /* font-size: 0.75em;
   font-weight: 700;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.2; */
 }
 .experience-counter__seconds {
   font-variant-numeric: tabular-nums;
