@@ -1,11 +1,11 @@
 import profile from "../data/profile.json";
 import { projects } from "../utils/projects";
-import { computeExperience } from "../utils/experience";
+import { useExperienceCounter } from "../hooks/useExperienceCounter";
 import ProjectCard from "../components/ProjectCard";
 import "./Home.css";
 
 export default function Home() {
-  const experience = computeExperience(profile.experienceStartDate);
+  const experience = useExperienceCounter(profile.experienceStartDate);
 
   return (
     <>
@@ -34,13 +34,32 @@ export default function Home() {
         <div className="shell statstrip__grid">
           {profile.stats.map((s) => {
             const isExperience = s.id === "experience";
-            const value = isExperience ? experience.years : s.value;
-            const suffix = isExperience
-              ? ` yr${experience.years === 1 ? "" : "s"}${experience.months ? ` ${experience.months}mo` : ""}`
-              : s.suffix;
+            
+            if (isExperience) {
+              const pad = (num) => String(num).padStart(2, '0');
+              const timeDisplay = (
+                <div className="experience-counter">
+                  <div className="experience-counter__main">
+                    <span className="experience-counter__years">{experience.years}</span>
+                    <span className="experience-counter__yrs">yrs</span>
+                    <span className="experience-counter__months">{experience.months}mo</span>
+                  </div>
+                  <div className="experience-counter__secondary">
+                    {experience.days}d {pad(experience.hours)}h {pad(experience.minutes)}m <span className="experience-counter__seconds">{pad(experience.seconds)}</span>s
+                  </div>
+                </div>
+              );
+              return (
+                <div className="stat" key={s.id}>
+                  <span className="stat__value">{timeDisplay}</span>
+                  <span className="stat__label">{s.label}</span>
+                </div>
+              );
+            }
+            
             return (
               <div className="stat" key={s.id}>
-                <span className="stat__value num">{value}<span className="stat__suffix">{suffix}</span></span>
+                <span className="stat__value num">{s.value}<span className="stat__suffix">{s.suffix}</span></span>
                 <span className="stat__label">{s.label}</span>
               </div>
             );

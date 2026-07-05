@@ -6,7 +6,7 @@
   "phone": "+91 8667004100",
   "linkedin": "https://www.linkedin.com/in/ashwinnsr/",
   "resumeFile": "/Ashwin-SR-Resume.pdf",
-  "experienceStartDate": "2023-09-01",
+  "experienceStartDate": "2023-09-01 09:00:00",
   "summary": "Power Platform Developer designing, building, and shipping enterprise-grade applications on Power Apps, Power Automate, Power BI, and Power Virtual Agents. I turn manual, paper-and-email business processes into governed, role-based systems on Dataverse, SharePoint, SQL Server, and Azure — work that has cut manual effort by up to 70% for the teams using it. PL-400 certified (Microsoft Power Platform Developer Associate).",
   "stats": [
     { "id": "experience", "label": "Power Platform experience" },

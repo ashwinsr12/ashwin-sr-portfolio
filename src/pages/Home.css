@@ -21,9 +21,52 @@
 }
 .stat { background: var(--bg-surface); padding: 22px 20px; display: flex; flex-direction: column; gap: 6px; }
 .stat__value { font-size: clamp(24px, 3vw, 32px); font-weight: 700; color: var(--text-primary); }
+.stat__value.multi-line { display: flex; flex-direction: column; gap: 4px; line-height: 1.1; }
+.stat__value.multi-line div { font-size: clamp(20px, 2.5vw, 28px); }
 .stat__suffix { font-size: 0.55em; color: var(--color-signal); margin-left: 2px; }
 .stat__label { font-family: var(--font-ui); font-size: 11.5px; color: var(--text-muted); line-height: 1.3; }
-@media (max-width: 700px) { .statstrip__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+/* Experience counter layout */
+.experience-counter {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.experience-counter__main {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.experience-counter__years {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.experience-counter__yrs {
+  font-size: 0.55em;
+  color: var(--color-signal);
+  margin-left: 2px;
+}
+.experience-counter__months {
+  font-size: 0.55em;
+  color: var(--color-signal);
+  margin-left: 2px;
+}
+.experience-counter__secondary {
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.experience-counter__seconds {
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+  display: inline-block;
+}
+@media (max-width: 700px) { 
+  .statstrip__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } 
+}
 
 /* ===== Projects grid ===== */
 .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
